@@ -1,10 +1,10 @@
 import os
 import csv
-import pandas as pd
 
+csv_path = os.path.join("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/Pypoll/Resources", 'election_data.csv')
 
-from google.colab import files
-files.upload()
+#variables assigment
+
 count_row=0
 candidate=[]
 poll_list=[]
@@ -19,13 +19,12 @@ Charles_percent= 0
 Diana_percent= 0
 Raymon_percent= 0
 
+with open(csv_path) as csvfile:
 
-with open('election_data.csv') as csvfile:
-
-    # CSV reader specifies delimiter and variable that holds contents
+    # CSV reader 
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    # Read the header row first (skip this step if there is row header)
+    # Read the header row first
     csv_header = next(csvreader)
 
     # Count each row of data after the header
@@ -54,9 +53,6 @@ with open('election_data.csv') as csvfile:
     winner = max(results, key=results.get)
       
 
-
-
-
        #print results
     print("Election Results")
     print("---------------------")
@@ -66,4 +62,13 @@ with open('election_data.csv') as csvfile:
     print(f"Diana DeGette: %", (Diana_percent) ,(Diana_count) )
     print(f"Raymon Anthony Doane: %", (Raymon_percent) ,(Raymon_count) )
     print("---------------------")
-    print(winner)
+    print(f"Winner:" ,(winner))
+
+with open("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyPoll/analysis/analysis.txt",'w') as text:
+    text.write("Election Results \n")
+    text.write("--------------------\n")
+    text.write("Charles Casper Stockham: %" + str(Charles_percent) + str(Charles_count) + "\n" )
+    text.write("Diana DeGette: %" + str(Diana_percent) + str(Diana_count) + "\n")
+    text.write("Raymon Anthony Doane: %" + str(Raymon_percent) + str(Raymon_count) + "\n" )
+    text.write("--------------------- \n")
+    text.write("Winner:" + winner )
