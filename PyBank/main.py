@@ -1,35 +1,36 @@
 import os
 import csv
-import pandas as pd
 
+csv_path = os.path.join("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyBank/Resources", 'budget_data.csv')
 
-from google.colab import files
-files.upload()
+#variables assigment
 count_row=0
 total_p_l=0
-change=0
 change_list=[]
+month_list=[]
 delta_list=[]
-with open('budget_data.csv') as csvfile:
 
-    # CSV reader specifies delimiter and variable that holds contents
+with open (csv_path) as csvfile:
+
+    
     csvreader = csv.reader(csvfile, delimiter=',')
 
 
-    # Read the header row first (skip this step if there is row header)
+    # Read the header row
     csv_header = next(csvreader)
 
     
     # Count each row of data after the header
     for month in csvreader:
-        count_row = count_row + 1 
+        count_row = count_row + 1
         
-        # Sum profit/loss    
-        total_p_l=total_p_l+int(month[1]) 
+        # Sum profit/loss
+        total_p_l=total_p_l+int(month[1])
 
      
         # change average calculation
         change_list.append(month[1])
+        month_list.append(month[0])
 
     for x in range(len(change_list)):
           if x < len(change_list)-1:
@@ -37,8 +38,8 @@ with open('budget_data.csv') as csvfile:
             sv=change_list[x+1]
             delta=int(sv)-int(fv)
             delta_list.append(delta)
-    
-    #change calculations    
+
+    #change calculations
     average_change=sum(delta_list)/len(delta_list)
     
     greatest_increase=max(delta_list)
@@ -46,10 +47,21 @@ with open('budget_data.csv') as csvfile:
 
     greatest_decrease=min(delta_list)
     min_index = delta_list.index(min(delta_list))
+    
     #print results
-
+    print("Financial Analysis")
+    print("--------------------")
     print(f"Total Months:", (count_row))
-    print(f"Total Profit/Loss:$",(total_p_l)) 
-    print(f"Average Change:$",(average_change)) 
-    print(f"Greatest Increase:$",(greatest_increase)) 
-    print(f"Greatest Decrease:$",(greatest_decrease)) 
+    print(f"Total Profit/Loss:$", (total_p_l)) 
+    print(f"Average Change:$", (round(average_change,2))) 
+    print(f"Greatest Increase:$", (month_list[max_index+1]) , (greatest_increase)) 
+    print(f"Greatest Decrease:$", (month_list[min_index+1]) , (greatest_decrease)) 
+
+with open("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyBank/analysis/analysis.txt",'w') as text:
+    text.write("Financial Analysis \n")
+    text.write("--------------------\n")
+    text.write("Total Months:" + str(count_row) + "\n")
+    text.write("Total Profit/Loss:$" + str(total_p_l) + "\n") 
+    text.write("Average Change:$" + str(round(average_change,2)) + "\n") 
+    text.write("Greatest Increase:$"  +  str(month_list[max_index+1])  +   "(" + str(greatest_increase) +")" + "\n") 
+    text.write("Greatest Decrease:$"  + str(month_list[min_index+1])  +  "(" + str(greatest_decrease) + ")" + "\n")
