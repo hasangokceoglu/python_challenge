@@ -40,6 +40,7 @@ Based on given data set, following information checked.
 * The winner of the election based on popular vote.
 
 Results found as following and printed as text file as well:
+
 Election Results
 -------------------------
 Total Votes: 369711
