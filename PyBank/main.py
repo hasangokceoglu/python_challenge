@@ -1,7 +1,7 @@
 import os
 import csv
 
-csv_path = os.path.join("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyBank/Resources", 'budget_data.csv')
+csv_path = os.path.join('Resources', 'budget_data.csv')
 
 #variables assigment
 count_row=0
@@ -57,7 +57,7 @@ with open (csv_path) as csvfile:
     print(f"Greatest Increase:$", (month_list[max_index+1]) , (greatest_increase)) 
     print(f"Greatest Decrease:$", (month_list[min_index+1]) , (greatest_decrease)) 
 
-with open("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyBank/analysis/analysis.txt",'w') as text:
+with open('analysis/analysis.txt",'w') as text:
     text.write("Financial Analysis \n")
     text.write("--------------------\n")
     text.write("Total Months:" + str(count_row) + "\n")
