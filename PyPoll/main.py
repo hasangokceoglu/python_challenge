@@ -1,7 +1,7 @@
 import os
 import csv
 
-csv_path = os.path.join("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/Pypoll/Resources", 'election_data.csv')
+csv_path = os.path.join('Resources', 'election_data.csv')
 
 #variables assigment
 
@@ -64,7 +64,7 @@ with open(csv_path) as csvfile:
     print("---------------------")
     print(f"Winner:" ,(winner))
 
-with open("C:/Users/hasan/Data Analytics/Projects/Modules/Week3/Week 3 Challenge/GitHub clone/python_challenge/PyPoll/analysis/analysis.txt",'w') as text:
+with open('analysis/analysis.txt','w') as text:
     text.write("Election Results \n")
     text.write("--------------------\n")
     text.write("Charles Casper Stockham: %" + str(Charles_percent) + str(Charles_count) + "\n" )
